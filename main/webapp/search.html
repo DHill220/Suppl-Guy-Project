@@ -1,0 +1,43 @@
+<style>
+body {
+  background-image: url(images/grill2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<div class="card mt-3">
+	<div class="card-header bg-info">
+		<h4>Search For Products</h4>
+		<button class="btn btn-success" ng-click="getAllProducts()">Refresh
+			Products</button>
+			<span class="float-right">
+			Search: <input type="text" maxlength="15" ng-model="searchValue"></span>
+	</div>
+	<div class="card-body">
+		<table class="table table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th>Product ID</th>
+					<th>Title</th>
+					<th>Category</th>
+					<th>Create Date</th>
+					<th>Update Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="product in products | filter:searchValue"
+					 ng-click="goToUpdateView(product.id)">
+					<td>{{product.id}}</td>
+					<td>{{product.title}}</td>
+					<td>{{product.category}}</td>
+					<td>{{product.createDateTime | date:'short'}}</td>
+					<td>{{product.updateDateTime | date:'short'}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="card-footer bg-info">Please select a product for
+			update/delete</div>
+	</div>
+</div>S	

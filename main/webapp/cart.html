@@ -1,0 +1,50 @@
+<style>
+body {
+  background-image: url(images/coating2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>
+<div ng-show="!viewCart">
+	<div class="display-4 text-center p-3 text-danger">Shopping Cart
+	</div>
+	<h5 class="text-center text-white">
+		items in cart: {{cart.length}}
+		<button class="btn btn-info" ng-click="viewMyCart()">view</button>
+	</h5>
+	<div class="row p-3 text-center">
+		<div class="" ng-repeat="item in itemsForSale">
+			<div class="card m-3">
+				<div class="card-header">{{item.title}}</div>
+				<div class="card-body">
+					<img class="img-fluid" src="images/products/{{item.image}}"
+						style="height: 200; width: 200;">
+				</div>
+				<div class="card-footer">
+					{{item.price | currency }}
+					<button class="btn btn-info btn-sm float-right"
+						ng-click="addToCart(item)">add to cart</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-show="viewCart">
+	<div class="display-4 text-center p-3 text-danger">Welcome To
+		Your Cart</div>
+	<div class="card text-center">
+		<div class="card-header">
+			<button class="btn btn-info" ng-click="hideMyCart()">return
+				to shopping</button>
+		</div>
+		<div class="card-body">
+			<div ng-repeat="cartItem in cart track by $index">
+				{{cartItem.title}} - {{cartItem.image}} - {{cartItem.price |
+				currency}}</div>
+		</div>
+		<div class="card-footer">
+			<button class="btn btn-info" ng-click="emptyMyCart()">empty</button>
+		</div>
+	</div>
+</div>
